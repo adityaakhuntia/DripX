@@ -1,0 +1,226 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --void: #ffffff;
+  --abyss: #f8f9fa;
+  --carbon: #f1f3f5;
+  --smoke: #e9ecef;
+  --ash: #dee2e6;
+  --steel: #6c757d;
+  --chalk: #495057;
+  --snow: #111111;
+  --neon: #2563eb;
+  --neon-dim: #1d4ed8;
+  --electric: #7c3aed;
+  --flame: #ea580c;
+  --ice: #0ea5e9;
+  --rose: #e11d48;
+  --gold: #d97706;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--void);
+  color: var(--chalk);
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--void); }
+::-webkit-scrollbar-thumb {
+  background: var(--smoke);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--steel);
+}
+
+/* Selection */
+::selection {
+  background: rgba(37, 99, 235, 0.2);
+  color: var(--snow);
+}
+
+/* ===== Elegant Film Grain ===== */
+.grain-overlay::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4t5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1mAAAAG3RSTlNAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAvEOwtAAAFVklEQVR4XpWWB67c2BUFb3g557T/hRo9/WUMZHlgr4Bg8Z3fyqZhUNoZgodGNJUBkEgQMvpSmse1R0yWUk8PKsKqeJyeFp8Na4wRQGCGAWaAiAC2tAEAGIBCAAIAiAGIBiAJQCCCAAIAiAGIBiAJQCCCAAIAiAGIBiAJQCCCAAIAiAGIBiAJQCCCAAIAiAGIBiAJQCCCAAIAiAGIBiAJQCCCAAIAiAGIBiAJQCCCAAIAiAGIBiAJQCCCA==");
+  animation: grain 8s steps(10) infinite;
+  mix-blend-mode: multiply;
+}
+@keyframes grain {
+  0%, 100% { transform: translate(0,0); }
+  10% { transform: translate(-5%, -10%); }
+  30% { transform: translate(7%, -25%); }
+  50% { transform: translate(-15%, 10%); }
+  70% { transform: translate(0%, 15%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+/* ===== Elegant Background Sections ===== */
+.bg-hero {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #f1f3f5 100%);
+}
+.bg-section-1 {
+  background: #ffffff;
+}
+.bg-section-2 {
+  background: #f8f9fa;
+}
+.bg-section-3 {
+  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+}
+.bg-section-4 {
+  background: #ffffff;
+}
+
+/* ===== Elegant Text Effects ===== */
+.elegant-text {
+  background: linear-gradient(135deg, #111111, #495057);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.elegant-shadow {
+  text-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+/* ===== Glass Card ===== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.03);
+}
+.glass-card-hover:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(37, 99, 235, 0.15);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(37,99,235,0.05);
+}
+
+/* ===== Product Cards ===== */
+.product-card {
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.5s ease;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.04);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+.product-card:hover {
+  transform: translateY(-16px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0,0,0,0.08);
+}
+
+/* ===== Cursor ===== */
+.cursor {
+  width: 8px;
+  height: 8px;
+  background: var(--snow);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.cursor-follower {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(17, 17, 17, 0.2);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease,
+    border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* ===== Horizontal scroll ===== */
+.horizontal-scroll-track { will-change: transform; }
+
+/* ===== Animated underline ===== */
+.animated-underline { position: relative; }
+.animated-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--snow);
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.animated-underline:hover::after { width: 100%; }
+
+/* ===== Stat counter ===== */
+.stat-number {
+  font-family: "Bebas Neue", cursive;
+  line-height: 1;
+}
+
+/* ===== Magnetic button ===== */
+.magnetic-btn {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ===== Shimmer line ===== */
+.shimmer-line {
+  background: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ===== Loading screen ===== */
+.loader-text {
+  font-family: "Bebas Neue", cursive;
+  letter-spacing: 0.3em;
+}
+
+/* ===== Glowing orb / Pastel Blobs ===== */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: orbFloat 8s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-20px, 15px) scale(0.95); }
+}
