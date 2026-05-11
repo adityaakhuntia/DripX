@@ -2,7 +2,6 @@
 
 Welcome to **DripX**, a premium, high-fidelity landing page for a luxury footwear brand. Designed with an elegant, modern "light mode" aesthetic, this project demonstrates smooth scroll interactions, glassmorphism UI, and highly engaging scroll-based animations.
 
-![DripX Preview](https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=90)
 
 ## 🌟 Features
 - **Elegant Light Aesthetic:** A pristine UI using frosted glass (`backdrop-filter`), extremely soft ambient shadows, and a clean white/gray canvas punctuated by sophisticated accent colors.
