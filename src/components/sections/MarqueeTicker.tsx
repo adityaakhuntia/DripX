@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+
 
 const tickerItems = [
   "ELEGANT MOTION", "✦", "PREMIUM CRAFT", "✦", "ENGINEERED COMFORT", "✦",
