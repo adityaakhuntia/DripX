@@ -1,8 +1,13 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useLayoutEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 const showcaseItems = [
   { id: 1, label: "01 / VELOCITY", title: "Born to Run", subtitle: "Carbon-plate propulsion", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700&q=80", color: "#2563eb", bg: "#f8f9fa" },
@@ -16,27 +21,55 @@ export default function ScrollShowcase() {
   const trackRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
 
-  useEffect(() => {
-    let ctx: { revert: () => void } | null = null;
-    const initGSAP = async () => {
-      const gsapModule = await import("gsap");
-      const gsap = gsapModule.default;
-      const ScrollTriggerModule = await import("gsap/ScrollTrigger");
-      const ScrollTrigger = ScrollTriggerModule.default;
-      gsap.registerPlugin(ScrollTrigger);
-      ctx = gsap.context(() => {
-        const track = trackRef.current;
-        const section = sectionRef.current;
-        if (!track || !section) return;
-        const totalWidth = track.scrollWidth - section.offsetWidth;
-        gsap.to(track, { x: -totalWidth, ease: "none", scrollTrigger: { trigger: section, start: "top top", end: `+=${totalWidth * 1.2}`, scrub: 1, pin: true, anticipatePin: 1 } });
-        if (headingRef.current) {
-          gsap.fromTo(headingRef.current, { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 1, scrollTrigger: { trigger: section, start: "top 80%", end: "top 40%", scrub: false, toggleActions: "play none none reverse" } });
+  useIsomorphicLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    let ctx = gsap.context(() => {
+      const track = trackRef.current;
+      const section = sectionRef.current;
+      if (!track || !section) return;
+      
+      const getScrollAmount = () => {
+        if (!track || !section) return 0;
+        return track.scrollWidth - window.innerWidth;
+      };
+      
+      gsap.to(track, {
+        x: () => -getScrollAmount(),
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: () => `+=${getScrollAmount()}`,
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
         }
-      }, sectionRef);
+      });
+      
+      if (headingRef.current) {
+        gsap.fromTo(headingRef.current, 
+          { opacity: 0, y: 60 }, 
+          { 
+            opacity: 1, 
+            y: 0, 
+            duration: 1, 
+            scrollTrigger: { 
+              trigger: section, 
+              start: "top 80%", 
+              end: "top 40%", 
+              scrub: false, 
+              toggleActions: "play none none reverse" 
+            } 
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => {
+      ctx.revert();
     };
-    initGSAP();
-    return () => { ctx?.revert(); };
   }, []);
 
   return (

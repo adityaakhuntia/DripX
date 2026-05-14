@@ -19,7 +19,7 @@ export default function FeaturedProducts() {
   return (
     <section ref={sectionRef} id="products" className="relative py-32 bg-section-1 overflow-hidden">
       {/* Soft background elements */}
-      <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(0,0,0,0.02) 0%, transparent 60%)", filter: "blur(60px)" }} />
+      <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(0,0,0,0.02) 0%, transparent 60%)" }} />
 
       <div className="max-w-7xl mx-auto px-6 mb-16 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">

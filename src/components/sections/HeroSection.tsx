@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
+import AnimatedHeroScene from "./AnimatedHeroScene";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -34,28 +35,7 @@ export default function HeroSection() {
 
   return (
     <section ref={sectionRef} className="relative min-h-screen flex items-center overflow-hidden bg-hero">
-      {/* Elegant soft blobs */}
-      <motion.div
-        animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute w-[600px] h-[600px] top-[-100px] right-[-100px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(0,0,0,0.03) 0%, transparent 60%)", filter: "blur(60px)" }}
-      />
-      <motion.div
-        animate={{ x: [0, -20, 0], y: [0, 30, 0] }}
-        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute w-[500px] h-[500px] bottom-[-50px] left-[-150px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(0,0,0,0.04) 0%, transparent 60%)", filter: "blur(60px)" }}
-      />
-
-      {/* Grid texture */}
-      <div
-        className="absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)`,
-          backgroundSize: "80px 80px",
-        }}
-      />
+      <AnimatedHeroScene />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-24 pb-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[85vh]">
@@ -166,11 +146,12 @@ export default function HeroSection() {
               />
             </motion.div>
 
-            {/* Soft shadow under shoe */}
+            {/* Soft shadow under shoe - Optimized */}
             <motion.div
-              animate={{ scaleX: [1, 0.8, 1], opacity: [0.15, 0.05, 0.15] }}
+              animate={{ scaleX: [1, 0.8, 1], opacity: [0.3, 0.1, 0.3] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute bottom-[10%] w-56 h-10 rounded-full blur-2xl bg-black"
+              className="absolute bottom-[10%] w-56 h-10 rounded-full"
+              style={{ background: "radial-gradient(ellipse, rgba(0,0,0,0.5) 0%, transparent 70%)" }}
             />
           </div>
         </div>

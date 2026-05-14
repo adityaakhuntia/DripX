@@ -36,8 +36,8 @@ export default function AboutSection() {
 
   return (
     <section ref={sectionRef} id="about" className="relative py-32 overflow-hidden bg-section-3">
-      {/* Subtle background blur blobs */}
-      <div className="absolute top-[10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-carbon filter blur-[100px] pointer-events-none opacity-60" />
+      {/* Subtle background blur blobs - Optimized */}
+      <div className="absolute top-[10%] left-[-10%] w-[600px] h-[600px] rounded-full pointer-events-none opacity-60" style={{ background: "radial-gradient(circle, var(--carbon) 0%, transparent 70%)" }} />
       
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="mb-20">
